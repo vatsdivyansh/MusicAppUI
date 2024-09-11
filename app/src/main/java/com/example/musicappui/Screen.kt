@@ -14,3 +14,5 @@ object AddAccount: DrawerScreen("Add Account" , "add account" , R.drawable.basel
 
     }
 }
+
+val screensInDrawer = listOf(Screen.DrawerScreen.Account , Screen.DrawerScreen.Subscription, Screen.DrawerScreen.AddAccount)
