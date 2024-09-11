@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScaffoldState
@@ -34,6 +35,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -41,7 +44,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.musicappui.MainViewModel
-
+import com.example.musicappui.screenInBottom
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -66,8 +69,28 @@ fun MainView(){
 //        mutableStateOf("")
             mutableStateOf(currentScreen.title) // now our title will be dynamic
     }
+
+    val bottomBar : @Composable () -> Unit = {
+        if(currentScreen is Screen.DrawerScreen || currentScreen == Screen.BottomScreen.Home){
+            BottomNavigation(modifier = Modifier.wrapContentSize()) {
+                screenInBottom.forEach{
+                    item->
+                    BottomNavigationItem(selected = currentRoute == item.bRoute, onClick = { controller.navigate(item.bRoute) }, icon = {
+                        Icon(contentDescription = item.bTitle ,painter =  painterResource(id = item.icon) )
+                    } , label = {Text(text = item.bTitle)} ,
+                        selectedContentColor = Color.White ,
+                        unselectedContentColor = Color.Black
+                        )
+                }
+
+            }
+
+        }
+    }
+
     // scaffold is basically just the parent UI element or the view for the entire page which contains the TopBar , content and the BottomBar
     Scaffold(
+        bottomBar = bottomBar,
         topBar = {
             TopAppBar(title = {Text(title.value)} ,
                 navigationIcon = { IconButton(onClick = {
