@@ -4,7 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -41,6 +41,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.musicappui.MainViewModel
+
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -140,8 +141,9 @@ fun Navigation(navController: NavController , viewModel: MainViewModel ,  pd:Pad
 
         }
         composable(Screen.DrawerScreen.Subscription.route){
-
+            Subscription()
         }
+
     }
 }
 
