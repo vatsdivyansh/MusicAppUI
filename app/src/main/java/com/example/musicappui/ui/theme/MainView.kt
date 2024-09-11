@@ -68,7 +68,7 @@ fun MainView(){
     // scaffold is basically just the parent UI element or the view for the entire page which contains the TopBar , content and the BottomBar
     Scaffold(
         topBar = {
-            TopAppBar(title = {Text("Home")} ,
+            TopAppBar(title = {Text(title.value)} ,
                 navigationIcon = { IconButton(onClick = {
                     // onClick event here opens up the drawer
                     scope.launch {
@@ -134,8 +134,9 @@ fun DrawerItem(
 
 @Composable
 fun Navigation(navController: NavController , viewModel: MainViewModel ,  pd:PaddingValues){
-    NavHost(navController = navController as NavHostController, startDestination = Screen.DrawerScreen.AddAccount.route, modifier = Modifier.padding(pd) ){
-        composable(Screen.DrawerScreen.AddAccount.route){
+    NavHost(navController = navController as NavHostController, startDestination = Screen.DrawerScreen.Account.route, modifier = Modifier.padding(pd) ){
+        composable(Screen.DrawerScreen.Account.route){
+            AccountView()
 
         }
         composable(Screen.DrawerScreen.Subscription.route){
