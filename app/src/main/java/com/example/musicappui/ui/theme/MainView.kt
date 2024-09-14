@@ -159,6 +159,17 @@ fun DrawerItem(
 @Composable
 fun Navigation(navController: NavController , viewModel: MainViewModel ,  pd:PaddingValues){
     NavHost(navController = navController as NavHostController, startDestination = Screen.DrawerScreen.Account.route, modifier = Modifier.padding(pd) ){
+        composable(Screen.BottomScreen.Home.bRoute){
+            // Add Home Screen
+            Home()
+        }
+        composable(Screen.BottomScreen.Browse.route){
+            //TODO Add Browse Screen
+        }
+        composable(Screen.BottomScreen.Library.bRoute){
+            // TODO Add Library Screen
+        }
+
         composable(Screen.DrawerScreen.Account.route){
             AccountView()
 
