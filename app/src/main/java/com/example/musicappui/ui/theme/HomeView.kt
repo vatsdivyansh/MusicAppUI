@@ -33,7 +33,7 @@ fun Home(){
                     // lazy row allows us to scroll lef to right same as lazy column allows us to scroll up and down
                     items(categories){
                         cat->
-                        BrowserItem(cat = cat , drawable = R.drawable.baseline_search_24)
+                        BrowserItem(cat = cat , drawable = R.drawable.baseline_apps_24)
                     }
                 }
             }

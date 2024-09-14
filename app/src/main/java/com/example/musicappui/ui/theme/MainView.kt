@@ -1,5 +1,6 @@
 package com.example.musicappui.ui.theme
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
@@ -75,9 +76,13 @@ fun MainView(){
             BottomNavigation(modifier = Modifier.wrapContentSize()) {
                 screenInBottom.forEach{
                     item->
+                    val isSelected = currentRoute == item.bRoute
+                    Log.d("Navigation", "Item: ${item.bTitle}, isSelected: $isSelected, route: ${item.bRoute}")
+                    val tint = if(isSelected)Color.White else Color.Black
                     BottomNavigationItem(selected = currentRoute == item.bRoute, onClick = { controller.navigate(item.bRoute) }, icon = {
-                        Icon(contentDescription = item.bTitle ,painter =  painterResource(id = item.icon) )
-                    } , label = {Text(text = item.bTitle)} ,
+
+                        Icon( tint=tint,contentDescription = item.bTitle ,painter =  painterResource(id = item.icon) )
+                    } , label = {Text(text = item.bTitle , color = tint)} ,
                         selectedContentColor = Color.White ,
                         unselectedContentColor = Color.Black
                         )
@@ -164,10 +169,12 @@ fun Navigation(navController: NavController , viewModel: MainViewModel ,  pd:Pad
             Home()
         }
         composable(Screen.BottomScreen.Browse.route){
-            //TODO Add Browse Screen
+            // Add Browse Screen
+            Browse()
         }
         composable(Screen.BottomScreen.Library.bRoute){
-            // TODO Add Library Screen
+            //  Add Library Screen
+            Library()
         }
 
         composable(Screen.DrawerScreen.Account.route){
